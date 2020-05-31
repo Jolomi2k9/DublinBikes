@@ -6,7 +6,7 @@ Student Number: 20091
 
 package com.example.dublinbikes;
 
-//this class enables other class in package to retrieve and manipulate specific JSON data
+//this class enables other classes in the package to retrieve and manipulate specific JSON data using the constructor and getter methods
 
 public class dublin_bikes_item {
     // data that will be gotten from JSONObject

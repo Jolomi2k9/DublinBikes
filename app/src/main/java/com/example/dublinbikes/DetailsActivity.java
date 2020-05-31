@@ -38,7 +38,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        //gets clicked data from main activity and assign to variables
+        //gets clicked data from main activity and assign it to variables
         Intent intent = getIntent();
         name = intent.getStringExtra(EXTRA_NAME);
         String address = intent.getStringExtra(EXTRA_ADDRESS);
@@ -77,7 +77,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void gotoLocation(){
 
-        
+
         LatLng goToLocation = new LatLng(positionLat, positionLng);
 
         //passes latitude and logitude data to map activity
