@@ -30,6 +30,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements dublin_bikes_adapter.onItemClickListener {
+
+    //constants used in onItemClick to pass data via intent
     public static final String EXTRA_NAME  = "name";
     public static final String EXTRA_ADDRESS  = "address";
     public static final String EXTRA_POSITION_LAT  = "position_lat";
@@ -56,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements dublin_bikes_adap
 
         mDublin_bikes_list = new ArrayList<>();
 
-
+        //Calls DownloadTasks and passes url to it
         DownloadTask task = new DownloadTask();
         task.execute("https://api.jcdecaux.com/vls/v1/stations?contract=dublin&apiKey=edf2c39aed4c6e06ba1cf8a607bf817847617b75");
     }
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity implements dublin_bikes_adap
         startActivity(detailIntent);
     }
 
+    //downloads data from supplied url, returns a string
     public class DownloadTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
@@ -107,8 +110,12 @@ public class MainActivity extends AppCompatActivity implements dublin_bikes_adap
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
+            //Takes downloaded string api data and converts it to JSONArray
             try {
                 JSONArray arr = new JSONArray(s);
+
+            //Create JSON objects from individual array items then loops through them to
+            //extract specific data with keys.
                 for (int i = 0; i < arr.length(); i++) {
                     JSONObject jsonObject1 = arr.getJSONObject(i);
                     JSONObject posi = jsonObject1.getJSONObject("position");
@@ -122,8 +129,11 @@ public class MainActivity extends AppCompatActivity implements dublin_bikes_adap
                     int available_bikes = jsonObject1.getInt("available_bikes");
                     String status = jsonObject1.getString("status");
 
+                    //add retrieved data to mDublin_bikes array list using dublin_bikes_item class constructor
                     mDublin_bikes_list.add(new dublin_bikes_item(city, name, address, positionLat, positionLng, bike_stands, available_bike_stands, available_bikes, status));
                 }
+
+                //use mDublin_bikes_adapter to fill recyclerview with data gotten form JSON array above
                 mDublin_bikes_adapter = new dublin_bikes_adapter(MainActivity.this, mDublin_bikes_list);
                 mRecyclerView.setAdapter(mDublin_bikes_adapter);
                 mDublin_bikes_adapter.setOnItemClickListener(MainActivity.this);

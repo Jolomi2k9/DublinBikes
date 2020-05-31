@@ -23,7 +23,7 @@ public class dublin_bikes_adapter extends RecyclerView.Adapter<dublin_bikes_adap
     private ArrayList<dublin_bikes_item> mDublin_bikes_list;
     private onItemClickListener mListener;
 
-    //forwards our click to the main activity
+    //forwards our click from adapter to the main activity
     public interface onItemClickListener{
         void onItemClick(int position);
     }
@@ -63,17 +63,12 @@ public class dublin_bikes_adapter extends RecyclerView.Adapter<dublin_bikes_adap
         return mDublin_bikes_list.size();
     }
 
+    //catching click in the adapter
+
     public class dublin_bikes_ViewHolder extends RecyclerView.ViewHolder{
         public TextView mTextViewContract_name;
         public TextView mTextViewName;
-        public TextView mTextViewAddress;
-        public TextView mTextViewPositionLat;
-        public TextView mTextViewPositionLng;
-        public TextView mTextViewBike_stands;
-        public TextView mTextViewAvailable_bike_stands;
-        public TextView mTextViewAvailable_bikes;
         public TextView mTextViewStatus;
-
 
          public dublin_bikes_ViewHolder(@NonNull View itemView) {
             super(itemView);

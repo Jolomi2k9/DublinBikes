@@ -38,6 +38,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        //gets clicked data from main activity and assign to variables
         Intent intent = getIntent();
         name = intent.getStringExtra(EXTRA_NAME);
         String address = intent.getStringExtra(EXTRA_ADDRESS);
@@ -47,6 +48,7 @@ public class DetailsActivity extends AppCompatActivity {
         int availableBikeStands = intent.getIntExtra(EXTRA_AVAILABLE_BIKE_STANDS,0);
         int availableBikes = intent.getIntExtra(EXTRA_AVAILABLE_BIKES,0);
         String status = intent.getStringExtra(EXTRA_STATUS);
+
 
         TextView textViewName = findViewById(R.id.text_name_details);
         TextView textViewAddress = findViewById(R.id.text_address_details);
@@ -75,8 +77,10 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void gotoLocation(){
 
+        
         LatLng goToLocation = new LatLng(positionLat, positionLng);
 
+        //passes latitude and logitude data to map activity
         Bundle args = new Bundle();
         args.putParcelable("latLon", goToLocation);
         args.putString("desc", name);
