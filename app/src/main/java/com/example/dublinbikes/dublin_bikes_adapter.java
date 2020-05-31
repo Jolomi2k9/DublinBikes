@@ -37,7 +37,7 @@ public class dublin_bikes_adapter extends RecyclerView.Adapter<dublin_bikes_adap
         mContext = context;
         mDublin_bikes_list = dublin_bikes_list;
     }
-
+    //This creates a view holder and returns a view
     @NonNull
     @Override
     public dublin_bikes_ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,6 +45,7 @@ public class dublin_bikes_adapter extends RecyclerView.Adapter<dublin_bikes_adap
         return new dublin_bikes_ViewHolder(v);
     }
 
+    //Binds with the view holder
     @Override
     public void onBindViewHolder(@NonNull dublin_bikes_ViewHolder holder, int position) {
         dublin_bikes_item currentItem = mDublin_bikes_list.get(position);
@@ -58,6 +59,7 @@ public class dublin_bikes_adapter extends RecyclerView.Adapter<dublin_bikes_adap
         holder.mTextViewContract_name.setText("City: "+city);
     }
 
+    //returns the size of our Arraylist
     @Override
     public int getItemCount() {
         return mDublin_bikes_list.size();
