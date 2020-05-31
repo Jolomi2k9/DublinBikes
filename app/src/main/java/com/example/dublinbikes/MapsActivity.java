@@ -1,3 +1,10 @@
+
+
+/*
+Name: Oritsejolomi Sillo
+Student Number: 20091
+*/
+
 package com.example.dublinbikes;
 
 import androidx.fragment.app.FragmentActivity;
